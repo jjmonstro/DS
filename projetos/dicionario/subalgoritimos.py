@@ -1,4 +1,6 @@
-# import os
+#Joao Pedro Correia
+#Matheus Bernardino Gomes
+import os
 # os.system("cls")
 
 #o dict está aqui para testes
@@ -7,7 +9,7 @@
 #          'Andre': 0.9}
 
 #----------------------------------------------
-def cadastrar_aluno(d: dict):
+def cadastrar_aluno(d: dict) -> None:
     #Verificando o limite de 10
      if len(d.keys()) > 10:
           print("--Máximo de 10 alunos atingido--")
@@ -39,30 +41,35 @@ def cadastrar_aluno(d: dict):
     
 #----------------------------------------------
 def nota_valida(s: str) -> bool:
-     #esse a é para resolver o problema de mias de um ponto
-     if s.count('.')>1 or s=='':
+     #isso era antes de TRY EXCEPT
+     # if s.count('.')>1 or s=='':
+     #      print("--Nota Inválida--")
+     #      return False 
+     # for i in s:
+     #     if not i.isnumeric():
+     #         if i == '.':
+     #             continue
+     #         else:
+     #             print("--Nota Inválida--")
+     #             return False
+     # s = float(s)
+     # if s > 10 or s < 0:
+     #    print("--Nota Inválida--")
+     #    return False
+     # else:
+     #      return True
+     
+     try:
+        s = float(s)
+     except ValueError:
           print("--Nota Inválida--")
-          return False 
-     for i in s:
-         if not i.isnumeric():
-             if i == '.':
-                 continue
-             else:
-                 print("--Nota Inválida--")
-                 return False
-     s = float(s)
-     if s > 10 or s < 0:
-        print("--Nota Inválida--")
-        return False
+          return False
      else:
-          return True
-     #Tudo isso poderia ser (porém, ainda não foi ensinado)
-#      try:
-#         float(s)
-#         return True
-#     except ValueError:
-#         return False
-
+          if s > 10 or s < 0:
+               print("--Nota Inválida--")
+               return False
+          else:
+               return True
 #----------------------------------------------
 def nome_valido(n: str, d: dict) -> bool:
      if n == '':
@@ -81,7 +88,7 @@ def nome_valido(n: str, d: dict) -> bool:
           return True
 
 #----------------------------------------------
-def listar_alunos(d: dict):
+def listar_alunos(d: dict)  -> None:
      print("  Nome           Nota")
      pontos='................' #10 pontos
      for k, v in d.items():
@@ -90,7 +97,7 @@ def listar_alunos(d: dict):
           print(f"  {k}{pontos[:qpontos:]}{v}")
 
 #----------------------------------------------
-def editar_aluno(d: dict):
+def editar_aluno(d: dict)  -> None:
      #Recebendo e verificando se nome existe
      while True:
          nome = input("Digite o nome do aluno: ")
@@ -114,7 +121,7 @@ def editar_aluno(d: dict):
      d.update([(nome,nota)])
 
 #----------------------------------------------
-def excluir_aluno(d: dict):
+def excluir_aluno(d: dict)  -> None:
      #Recebendo e verificando se nome existe
      while True:
          nome = input("Digite o nome do aluno: ")
@@ -130,7 +137,7 @@ def excluir_aluno(d: dict):
      print("Aluno deletado com sucesso!!")
 
 #----------------------------------------------
-def media_turma(d:dict):
+def media_turma(d:dict)  -> None:
      a=0
      soma=0
      for v in d.values():
@@ -140,7 +147,7 @@ def media_turma(d:dict):
      print(f"A média da turma é: {soma/a}")
 
 #----------------------------------------------
-def consultar_aluno(d: dict):
+def consultar_aluno(d: dict)  -> None:
      while True:
          nome = input("Digite o nome do aluno que deseja consultar: ")
          nome = nome.capitalize()
@@ -157,8 +164,10 @@ def consultar_aluno(d: dict):
      os.system("cls")
      print("  Nome           Nota")
      print(f"  {nome}{pontos[:qpontos:]}{d[nome]}")
+     
 
 #----------------------------------------------
-def apagar_sala(d:dict):
-     d.clear()
+def apagar_sala(d:dict)  -> None:
+     d.clear() 
      print("Todos os dados foram apagados com sucesso!!")
+     

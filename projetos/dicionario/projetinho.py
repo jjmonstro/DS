@@ -1,12 +1,14 @@
-
+import os 
 from subalgoritimos import *
+
+#Joao Pedro Correia
+#Matheus Bernardino Gomes
 
 notas = {'Joao': 9.5,
          'Marina': 9.5,
          'Andre': 9.5}
 
 while True:
-    import os 
     os.system("cls")
     print("""    0- Sair
     1- Adicionar novo Aluno | Nota (limite 10 alunos)
@@ -17,10 +19,13 @@ while True:
     6- Consultar um aluno
     7- Apagar todos os alunos da sala""")
     opcao = input("Escolha: ")
-    if not opcao.isnumeric:
-        print("--Opção Inválida--")
+    try:
+        opcao=int(opcao)
+    except:
+        os.system("cls")
+        input("""--Opção Inválida--
+Aperte enter para continuar...""")
         continue
-    opcao=int(opcao)
     match opcao:
         case 0:
             print("Saindo...")

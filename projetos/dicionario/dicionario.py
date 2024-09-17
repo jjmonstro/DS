@@ -3,7 +3,7 @@ os.system("cls")
 
 crias = {
     'nome' : 'Correx',
-    'crime' : 244,
+    'nome' : 244,
     'estado civil' : 'Delas',
     'gay' : True
 }
