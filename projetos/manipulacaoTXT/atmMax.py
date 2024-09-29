@@ -24,7 +24,8 @@ Pronto!!! você tera uma lista com as palavras pertinentes,
 
 
 listaComentarios = [
-    "Ótimo produto! Chegou rápido e em perfeito estado.\n",
+    #                                        | esse 'em' não sai e eu não sei porque
+    "em e Ótimo Ótimo Ótimo Ótimo Ótimo Ótimo Ótimo Ótimo produto! em Chegou rápido e em perfeito estado.\n",
     "Excelente custo-benefício. Recomendo a todos.\n",
     "Muito satisfeito. Funciona perfeitamente.\n",
     "Entrega rápida. Produto conforme descrito.\n",
@@ -46,10 +47,43 @@ listaComentarios = [
     "Produto excelente. Funciona perfeitamente."
 ] 
 
-palavrasDescartaveis=["e", "em"]
+palavrasDescartaveis=["e", "em", "do", "a", "na", "as", "de"]
 
 with open("sujo.txt", "w+", encoding="utf-8") as arq:
     arq.writelines(listaComentarios)
 
-string="asd  asdasd asd"
-print(string.split())
+
+
+with open("sujo.txt", "r+", encoding="utf-8") as arqs, open("limpo.txt", "w+", encoding="utf-8") as arql:
+    listaSujo=arqs.readlines()
+
+    stringSujo=" ".join(listaSujo)
+
+    listaPalavras=stringSujo.split()
+
+    listaPalavrasLower=[]
+    for i in listaPalavras:
+        i = i.lower().rstrip('.')
+        listaPalavrasLower.append(i)
+
+    listaFiltrada=[]
+    for i in listaPalavrasLower:
+        if i not in palavrasDescartaveis:
+            listaFiltrada.append(i+"\n")
+    
+    itemMaisRepete=0
+    maiorRept=0
+
+    for item in listaFiltrada:
+        contagem=0
+        for i in listaFiltrada:
+            if i == item:
+                contagem+=1
+        if contagem>maiorRept:
+            maiorRept=contagem
+            itemMaisRepete=item
+    arql.writelines(listaFiltrada)
+    print("A palavra que mais se repete é: "+itemMaisRepete)
+    
+    
+
